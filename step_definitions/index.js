@@ -75,22 +75,6 @@ AfterAll(async () => {
             let text = await driver.findElement(By.xpath('(//div[@class = "card-text bg-white p-1"])[' + i + ']')).getText();
             expect(text).to.contain(string, 'The ' + i + '. item in the ' + string + ' category is incorrect!')
     }
-           
-        /*try{
-                expect(text).to.contain(string);
-            } catch(err){
-                incorrectArray.push(i);
-            }
-        }
-
-        if (incorrectArray.length != 0){
-            let incorrectString = ""
-            for (i = 0; i < incorrectArray.length; i++){
-                incorrectString += incorrectArray[i] + '. ';
-            }
-            console.log('The following item are incorrect in the "' + string + '" category: ' + incorrectString)
-        }*/
-
     });
 
     

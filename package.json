@@ -9,7 +9,9 @@
     "chromedriver": "^2.46.0",
     "cucumber": "^5.1.0",
     "geckodriver": "^1.21.0",
-    "selenium-webdriver": "^3.6.0"
+    "node": "^15.4.0",
+    "selenium-webdriver": "^3.6.0",
+    "yarn": "^1.22.10"
   },
   "devDependencies": {},
   "scripts": {

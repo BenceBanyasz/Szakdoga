@@ -40,19 +40,16 @@ AfterAll(async () => {
 
 
     Given('the Local Website is open',async function () {
-        driver.sleep(500);
         await driver.get('http://localhost:4500')
     });
 
     When('the all button is clicked',async function () {
-        driver.sleep(500);
         await driver.findElement(By.xpath('//button[. = "All"]')).click();
     });
 
 
     let counter = 0;
     Then('every item should be visible {string} items',async function (string) {
-        driver.sleep(500);
         let myList = await driver.findElements(By.xpath('//div[@class = "card m-1 p-1 bg-light"]'))
         counter = myList.length;
         expect(counter).to.equal(parseInt(string), 'The number of items in the list is incorrect! The expected number is: ' + string + ', but it is: ' + counter + '.')
@@ -61,13 +58,11 @@ AfterAll(async () => {
 
 
     When('the {string} button is clicked',async function (string) {
-        driver.sleep(500);
         await driver.findElement(By.xpath('//button[. = "'+ string +'"]')).click();
     });
 
 
     Then('items related to this category should be visible, must contain {string}',async function (string) {
-        driver.sleep(500);
         let myList = await driver.findElements(By.xpath('//div[@class = "card-text bg-white p-1"]'));
         //let incorrectArray = [];
 
@@ -79,7 +74,6 @@ AfterAll(async () => {
 
     
       When('the {string} quantity selection menu is clicked',async function (string) {
-        driver.sleep(500);
         let dropDown = await driver.findElement(By.xpath('(//div[@class = "card-text bg-white p-1"])[' + string + ']/select'));
         dropDown.click();
         });
@@ -92,14 +86,12 @@ AfterAll(async () => {
         options = options.replace(/(\n)/gm,"");                 //Removing line breaks
         options = parseInt(options);
         expect(options).to.equal(123, 'The quantity options are incorrect.')
-        console.log(options);
 
       });
 
       When('I add one from every item to the Cart',async function () {
         let myList = await driver.findElements(By.xpath('//div[@class = "card-text bg-white p-1"]'))
         for(i = 1; i < myList.length + 1; i++){
-            driver.sleep(500);
             await driver.findElement(By.xpath('(//div[@class = "card-text bg-white p-1"])[' + i + ']/button')).click();
         } 
       });
@@ -110,7 +102,6 @@ AfterAll(async () => {
         quantityAndPriceList[0] = quantityAndPriceList[0].replace(/\D/g,'')
         quantityAndPriceList[1] = quantityAndPriceList[1].replace(/\D/g,'')     //Removing all characters except numbers
         quantityAndPriceList[1] = quantityAndPriceList[1].slice(0,quantityAndPriceList[1].length-2)     //Removing 2 characters because of decimals
-        console.log(quantityAndPriceList)
         expect(parseInt(quantityAndPriceList[1])).to.equal(int, 'The Total Amount in the Cart is not correct, it should be $' + int + ', but it is $' + quantityAndPriceList[1] + '.');
         
       });
@@ -125,12 +116,12 @@ AfterAll(async () => {
 
       Then('the Back button should be visible',async function () {
         let element = await driver.findElement(By.className("btn btn-secondary m-1")).isDisplayed();
-        console.log(element)
+        expect(element).to.be.true;
       });
 
       Then('the message {string} should be visible',async function (string) {
         let visible = await driver.findElement(By.className("m-2 text-center")).isDisplayed();
-        console.log(visible);
+        expect(visible).to.be.true;
         let text = await driver.findElement(By.className("m-2 text-center")).getText();
         expect(text).to.contain(string, 'The message is incorrect, it should contain: ' + string);
         
@@ -139,7 +130,7 @@ AfterAll(async () => {
 
       Then('All categories should be visible',async function () {
         let visible = await driver.findElement(By.xpath('//button[. = "All"]')).isDisplayed();
-        console.log(visible);
+        expect(visible).to.be.true;
       });
 
 
